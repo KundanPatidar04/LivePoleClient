@@ -1,0 +1,19 @@
+.vote-li{
+    background-color: #cdcdcd;
+}
+.vote-li:hover{
+    border: 1px solid ;
+    background-color: #cdcdcd;
+}
+
+/* ElectionList component  */
+.pop-bg{
+    position: relative;
+}
+
+/* VotingElection component */
+.pop-up{
+    position: fixed;
+    top: 20%;
+    left: 25%;
+}
