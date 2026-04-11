@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router';
 
 
 export const LoginForm = () => {
+    let Api = import.meta.env.VITE_API;
+
     const navigate = useNavigate()
     const [login, setLogin] = useState({
         userMail: "",
@@ -13,25 +15,53 @@ export const LoginForm = () => {
     const inputHandler = (event) => {
         setLogin({ ...login, [event.target.name]: event.target.value });
     }
+
+    const decodeToken = (token) => {
+        try {
+            const base64Url = token.split('.')[1]; // Get the payload part
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
+        } catch (e) {
+            return null;
+        }
+    };
+
     const loginMamber = async (event) => {
         try {
             event.preventDefault();
-            let res = await axios.post("http://localhost:4000/login", login);
-            let user = res.data.user ;
-            
+            let token = await JSON.parse(sessionStorage.getItem('token'));
+            let res = await axios.post(`${Api}/login`, login, {
+                headers: {
+                    'authtoken': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+            });
+
             setLogin({
                 userMail: "",
                 userPswd: ""
             });
-            
-            if(res.data.success == true){
-                localStorage.setItem("user" ,JSON.stringify(user));
-                navigate(`/${user.role}`)
+
+
+            if (res.data.success == true) {
+                let token = res.data.accessToken;
+                sessionStorage.setItem('token', JSON.stringify(token));
+
+                let user = decodeToken(token);
+                sessionStorage.setItem("user", JSON.stringify(user));
+                navigate(`/${user.role}`);
             }
-            
+
         }
         catch (error) {
-            console.log(error);
+            setLogin({
+                userMail: "",
+                userPswd: ""
+            });
             alert("incorrect email/password");
         }
 

@@ -4,6 +4,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { VoteConform } from './VoteConform';
 
 export const VotingElection = ({ title, id, description, onClose }) => {
+  let Api = import.meta.env.VITE_API;
+    
     const [candidate, setCandidate] = useState([]);
     const [conform, setConform] = useState({ popup: false, candidate: "" });
 
@@ -15,18 +17,31 @@ export const VotingElection = ({ title, id, description, onClose }) => {
     }, [])
 
     const getCandidate = async () => {
-        let res = await axios.get(`http://localhost:4000/Candidate/${id}`);
+        let token = await JSON.parse(sessionStorage.getItem('token'));
+        let res = await axios.get(`${Api}/Candidate/${id}`, {
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
         setCandidate(res.data.list);
     }
     useEffect(() => getCandidate, [])
 
     const addVote = async (cndid) =>{
         try{
-            let voterId = JSON.parse(localStorage.getItem("user")).id;
+            let voterId = JSON.parse(sessionStorage.getItem("user")).id;
             let candidateId = cndid;
             let electionId = id ;
             let votes = {voterId , candidateId, electionId};
-            let res = await axios.post('http://localhost:4000/addVote', votes);
+
+            let token = await JSON.parse(sessionStorage.getItem('token'));
+            let res = await axios.post(`${Api}/addVote`, votes, {
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    });
             if(res.data.success == true){
                 toast.success(res.data.message);
                 setTimeout(() => {

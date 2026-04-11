@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router'
+import toast, { Toaster } from 'react-hot-toast'
+import { useNavigate, useParams } from 'react-router';
 
-export const StartElecionForm = () => {
+export const StopElectionForm = () => {
     let Api = import.meta.env.VITE_API;
 
     const navigate = useNavigate();
@@ -27,14 +27,13 @@ export const StartElecionForm = () => {
     }
     useEffect(() => { fetchElection() }, [electionId]);
 
-    const activeElection = async (event) => {
+    const stopElection = async (event) =>{
         try {
             event.preventDefault();
             let token = await JSON.parse(sessionStorage.getItem('token'));
-
             let res = await axios({
                 method: 'post',
-                url: `${Api}/startElection/${electionId}`,
+                url: `${Api}/stopElection/${electionId}`,
                 headers: {
                     'authtoken': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -52,14 +51,13 @@ export const StartElecionForm = () => {
             console.log(error);
         }
     }
-
-    return (
-        <>
+  return (
+    <>
             <div className='@container w-4xl mx-auto my-10 border-2 rounded border-sky-300 bg-white'>
                 <div className='border-b-2'>
                     <h3 className='text-2xl bg-blue-600 p-3 font-medium text-white'>start Election</h3>
                 </div>
-                <form action="" className='p-5' onSubmit={activeElection} method='post'>
+                <form action="" className='p-5' onSubmit={stopElection} method='post'>
                     <div>
                         <Toaster />
                         {election ? (<>
@@ -71,11 +69,11 @@ export const StartElecionForm = () => {
                             <p>Loading...</p>
                         )}
                         <div className='grid grid-flow-col justify-items-center my-5 px-10'>
-                            <button type='submit' className='text-xl bg-blue-700 rounded-md text-white px-5 py-2'>Start Election</button>
+                            <button type='submit' className='text-xl bg-blue-700 rounded-md text-white px-5 py-2'>End Election</button>
                         </div>
                     </div>
                 </form>
             </div>
         </>
-    )
+  )
 }

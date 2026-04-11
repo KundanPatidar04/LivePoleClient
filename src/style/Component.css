@@ -17,3 +17,13 @@
     top: 20%;
     left: 25%;
 }
+
+/* hero card */
+.hero-card-n{
+    font-size: 50px;
+    margin-bottom: 7.5px;
+}
+.hero-card:hover .hero-card-n{
+    font-size: 55px;
+    margin-bottom: 0px;
+}

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 export const CreateElection = () => {
+    let Api = import.meta.env.VITE_API;
+
     const [election, setElection] = useState({
         electionTitle: "",
         description: "",
@@ -14,15 +16,27 @@ export const CreateElection = () => {
     }
 
     const createElection = async (event) => {
-        event.preventDefault();
-        let res = await axios.post("http://localhost:4000/createElection", election);
-        if (res) {
-            setElection({
-                electionTitle: "",
-                description: "",
-                startDate: "",
-                endDate: ""
-            })
+        try {
+            event.preventDefault();
+            let token = await JSON.parse(sessionStorage.getItem('token'));
+            let res = await axios.post(`${Api}/createElection`, election, {
+                headers: {
+                    'authtoken': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            if (res) {
+                setElection({
+                    electionTitle: "",
+                    description: "",
+                    startDate: "",
+                    endDate: ""
+                })
+            }
+        }
+        catch(error){
+            console.error(error);
         }
     }
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export const RegistrationForm = () => {
+    let Api = import.meta.env.VITE_API;
+
     const [member, setMember] = useState({
         userName: "",
         userMail: "",
@@ -15,8 +17,13 @@ export const RegistrationForm = () => {
     const registor = async (event) => {
         try {
             event.preventDefault();
-
-            let res = await axios.post("http://localhost:4000/registor", member);
+            let token = await JSON.parse(sessionStorage.getItem('token'));
+            let res = await axios.post(`${Api}/registor`, member, {
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    });
             setMember({
                 userName: "",
                 userMail: "",

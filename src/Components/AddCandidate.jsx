@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
+
 export const AddCandidate = () => {
+  let Api = import.meta.env.VITE_API;
+
   const[electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState({
     candidateName: "",
@@ -10,7 +13,13 @@ export const AddCandidate = () => {
   });
 
   const getElections = async ()=>{
-    let res = await axios.get("http://localhost:4000/electionList");
+    let token = await JSON.parse(sessionStorage.getItem('token'));
+    let res = await axios.get(`${Api}/electionList`, {
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
     setElectionList(res.data.data);
   }
   useEffect(()=>getElections, [])
@@ -22,7 +31,13 @@ export const AddCandidate = () => {
   const AddCandidate = async (event) => {
     try {
       event.preventDefault();
-      let res = await axios.post("http://localhost:4000/addCandidate", candidate);
+      let token = await JSON.parse(sessionStorage.getItem('token'));
+      let res = await axios.post(`${Api}/addCandidate`, candidate, {
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    });
       if (res) {
         setCandidate({
           candidateName: "",

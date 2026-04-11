@@ -4,8 +4,9 @@ import { Link } from 'react-router'
 import { VotingElection } from './VotingElection';
 
 export const ElectionList = () => {
-  
-  let user = JSON.parse(localStorage.getItem("user"))
+  let Api = import.meta.env.VITE_API;
+
+  let user = JSON.parse(sessionStorage.getItem("user"))
   let userId = user.id;
 
   const [elections, setElections] = useState([]);
@@ -13,7 +14,13 @@ export const ElectionList = () => {
   const [flag, setFlag] = useState(false);
 
   const getElections = async () => {
-    let res = await axios.get(`http://localhost:4000/Elections/${userId}`); 
+    let token = await JSON.parse(sessionStorage.getItem('token'));
+    let res = await axios.get(`${Api}/Elections/${userId}`,{
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    } );
     setElections(res.data.data);
   }
   useEffect(() => getElections, [])

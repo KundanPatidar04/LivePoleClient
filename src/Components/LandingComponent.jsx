@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-export const Landincomponent = () => {
+export const LandingComponent = () => {
     return (
         <>
             <div className='border-4 border-sky-300 rounded-md @container bg-white w-6xl mx-auto mt-7'>
