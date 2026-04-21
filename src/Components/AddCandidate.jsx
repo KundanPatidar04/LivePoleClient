@@ -12,20 +12,17 @@ export const AddCandidate = () => {
     electionId: ""
   });
  
-  useEffect(()=> function(){
-    console.log("testing effect")
-  });
-  console.log("hello world")
-  const getElections = ()=>{
+  useEffect(getElections,[]);
+  const getElections = async ()=>{
     console.log("Testing Code")
-    // let token = await JSON.parse(sessionStorage.getItem('token'));
-    // let res = await axios.get(`${Api}/electionList`, {
-    //   headers: {
-    //     'authtoken': `Bearer ${token}`,
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-    // setElectionList(res.data.data);
+    let token = await JSON.parse(sessionStorage.getItem('token'));
+    let res = await axios.get(`${Api}/electionList`, {
+      headers: {
+        'authtoken': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    setElectionList(res.data.data);
   }
 
 
