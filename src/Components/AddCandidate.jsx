@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 
 export const AddCandidate = () => {
@@ -11,7 +11,10 @@ export const AddCandidate = () => {
     party: "",
     electionId: ""
   });
-
+ 
+  useEffect(()=> function(){
+    console.log("testing effect")
+  });
   console.log("hello world")
   const getElections = ()=>{
     console.log("Testing Code")
@@ -24,9 +27,7 @@ export const AddCandidate = () => {
     // });
     // setElectionList(res.data.data);
   }
-  useEffect(()=> function(){
-    console.log("testing effect")
-  });
+
 
   const inputHandler = (event) => {
     setCandidate({ ...candidate, [event.target.name]: event.target.value });
