@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useNavigate, } from 'react-router'
 
 export const StartElection = () => {
@@ -18,7 +18,7 @@ export const StartElection = () => {
     });
     setElections(res.data.data);
   }
-  useEffect(() => fetchDate, [])
+  useEffect(fetchDate, [])
 
   const conformElection = (elec) => {
     try {
