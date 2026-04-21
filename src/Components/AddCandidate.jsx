@@ -20,6 +20,7 @@ export const AddCandidate = () => {
         'Content-Type': 'application/json'
       }
     });
+    console.log(res)
     setElectionList(res.data.data);
   }
   useEffect(()=>getElections, [])
