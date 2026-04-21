@@ -12,7 +12,6 @@ export const AddCandidate = () => {
     electionId: ""
   });
  
-  useEffect(getElections,[]);
   const getElections = async ()=>{
     console.log("Testing Code")
     let token = await JSON.parse(sessionStorage.getItem('token'));
@@ -24,7 +23,8 @@ export const AddCandidate = () => {
     });
     setElectionList(res.data.data);
   }
-
+  
+  useEffect(getElections,[]);
 
   const inputHandler = (event) => {
     setCandidate({ ...candidate, [event.target.name]: event.target.value });
