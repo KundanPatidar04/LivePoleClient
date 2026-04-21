@@ -14,16 +14,17 @@ export const AddCandidate = () => {
 
   console.log("hello world")
   const getElections = async ()=>{
-    let token = await JSON.parse(sessionStorage.getItem('token'));
-    let res = await axios.get(`${Api}/electionList`, {
-      headers: {
-        'authtoken': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    setElectionList(res.data.data);
+    console.log("Testing Code")
+    // let token = await JSON.parse(sessionStorage.getItem('token'));
+    // let res = await axios.get(`${Api}/electionList`, {
+    //   headers: {
+    //     'authtoken': `Bearer ${token}`,
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+    // setElectionList(res.data.data);
   }
-  useEffect(()=>getElections(), []);
+  useEffect(()=>getElections, []);
 
   const inputHandler = (event) => {
     setCandidate({ ...candidate, [event.target.name]: event.target.value });
