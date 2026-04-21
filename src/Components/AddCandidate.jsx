@@ -23,7 +23,7 @@ export const AddCandidate = () => {
     });
     setElectionList(res.data.data);
   }
-  useEffect(()=>getElections, [])
+  useEffect(()=> console.log("hello live"), [])
 
   const inputHandler = (event) => {
     setCandidate({ ...candidate, [event.target.name]: event.target.value });
