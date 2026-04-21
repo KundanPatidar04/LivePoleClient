@@ -24,7 +24,9 @@ export const AddCandidate = () => {
     // });
     // setElectionList(res.data.data);
   }
-  useEffect(()=>getElections, []);
+  useEffect(()=> function(){
+    console.log("testing effect")
+  });
 
   const inputHandler = (event) => {
     setCandidate({ ...candidate, [event.target.name]: event.target.value });
