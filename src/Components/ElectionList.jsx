@@ -13,7 +13,8 @@ export const ElectionList = () => {
   const [electionItem, setElectionItem] = useState();
   const [flag, setFlag] = useState(false);
 
-  const getElections = async () => {
+  useEffect(()=> {
+    async function getElections(){
     let token = await JSON.parse(sessionStorage.getItem('token'));
     let res = await axios.get(`${Api}/Elections/${userId}`,{
       headers: {
@@ -22,8 +23,8 @@ export const ElectionList = () => {
       }
     } );
     setElections(res.data.data);
-  }
-  useEffect(() => getElections, [])
+  }getElections()
+  }, [])
 
   const AddVote = (item)=>{
     setElectionItem(item);
