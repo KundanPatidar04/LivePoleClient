@@ -13,7 +13,7 @@ export const AddCandidate = () => {
   });
 
   console.log("hello world")
-  const getElections = async ()=>{
+  const getElections = ()=>{
     console.log("Testing Code")
     // let token = await JSON.parse(sessionStorage.getItem('token'));
     // let res = await axios.get(`${Api}/electionList`, {
