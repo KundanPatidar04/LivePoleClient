@@ -14,6 +14,7 @@ export const AddCandidate = () => {
 
   const getElections = async ()=>{
     let token = await JSON.parse(sessionStorage.getItem('token'));
+    console.log(token)
     let res = await axios.get(`${Api}/electionList`, {
       headers: {
         'authtoken': `Bearer ${token}`,
