@@ -13,7 +13,6 @@ export const AddCandidate = () => {
   });
  
   const getElections = async ()=>{
-    console.log("Testing Code")
     let token = await JSON.parse(sessionStorage.getItem('token'));
     let res = await axios.get(`${Api}/electionList`, {
       headers: {
@@ -21,7 +20,6 @@ export const AddCandidate = () => {
         'Content-Type': 'application/json'
       }
     });
-    console.log(res)
     setElectionList(res.data.data);
   }
   useEffect(getElections,[]);
