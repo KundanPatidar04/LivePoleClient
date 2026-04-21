@@ -18,8 +18,6 @@ export const ViewResult = () => {
   }
   useEffect(() => fetchResult, [])
 
-  console.log(result);
-
 
   return (
     <div className='@container w-5xl mx-auto my-10 border-2 rounded border-sky-300 bg-white'>
