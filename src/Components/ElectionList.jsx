@@ -23,7 +23,7 @@ export const ElectionList = () => {
     } );
     setElections(res.data.data);
   }
-  useEffect(()=>getElections, [])
+  useEffect(()=>{getElections()}, [])
 
   const AddVote = (item)=>{
     setElectionItem(item);

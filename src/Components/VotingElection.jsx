@@ -26,7 +26,7 @@ export const VotingElection = ({ title, id, description, onClose }) => {
     });
         setCandidate(res.data.list);
     }
-    useEffect(()=>getCandidate, [])
+    useEffect(()=>{getCandidate()}, [])
 
     const addVote = async (cndid) =>{
         try{
