@@ -18,7 +18,7 @@ export const StartElection = () => {
     });
     setElections(res.data.data);
   }
-  useEffect(fetchDate, [])
+  useEffect(()=>fetchDate, [])
 
   const conformElection = (elec) => {
     try {

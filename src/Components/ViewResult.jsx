@@ -16,7 +16,7 @@ export const ViewResult = () => {
     });
     setResult(res.data.data);
   }
-  useEffect(fetchResult, [])
+  useEffect(()=>fetchResult, [])
 
 
   return (
