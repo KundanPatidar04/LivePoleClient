@@ -37,7 +37,7 @@ export const RegistrationForm = () => {
 
     return (
         <>
-            <div className='@container w-xl mx-auto my-10 border-2 rounded border-sky-300 bg-white'>
+            <div className='@container w-[90%] md:w-[70%] lg:w-[50%] mx-auto my-10 border-2 rounded border-sky-300 bg-white'>
                 <form action="" className='p-5' onSubmit={registor} method='post'>
                     <div className='grid'>
                         <label htmlFor="" className='font-bold'>User Name</label>

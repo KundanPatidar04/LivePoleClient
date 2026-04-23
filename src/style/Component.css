@@ -1,29 +1,70 @@
-.vote-li{
+.vote-li {
     background-color: #cdcdcd;
 }
-.vote-li:hover{
-    border: 1px solid ;
+
+.vote-li:hover {
+    border: 1px solid;
     background-color: #cdcdcd;
 }
 
 /* ElectionList component  */
-.pop-bg{
+.pop-bg {
     position: relative;
 }
 
 /* VotingElection component */
-.pop-up{
-    position: fixed;
+.pop-up {
+    position: fixed;    
     top: 20%;
-    left: 25%;
+    margin: 0px 25%;
 }
 
 /* hero card */
-.hero-card-n{
+.hero-card-n {
     font-size: 50px;
     margin-bottom: 7.5px;
 }
-.hero-card:hover .hero-card-n{
+
+.hero-card:hover .hero-card-n {
     font-size: 55px;
     margin-bottom: 0px;
+}
+
+/* start election component */
+.btn-adjust{
+    margin-left: auto;
+    min-width: 90px;
+}
+
+/* get elections component */
+.vote-btn-adjust{
+    margin-left: auto;
+    min-width: 110px;
+}
+
+
+@media (max-device-width: 767px) {
+    .hero-card-n {
+        font-size: 40px !important;
+        margin-bottom: 7.5px;
+
+    }
+
+    .hero-card:hover .hero-card-n {
+        font-size: 45px !important;
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-device-width: 639px) {
+.pop-up {
+    margin: 0px 5%;
+}
+
+.btn-adjust{
+    margin: 6px auto 0px;
+}
+.vote-btn-adjust{
+    margin: 6px auto 0px;
+}
 }

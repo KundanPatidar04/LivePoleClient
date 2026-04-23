@@ -65,15 +65,15 @@ export const VotingElection = ({ title, id, description, onClose }) => {
 
     return (
         <>
-            <div className='fixed inset-0 bg-gray-300 opacity-75' onClick={onclose}></div>
-            <div className='@container w-3xl mx-auto my-10 pb-5 border-2 rounded border-sky-300 bg-white pop-up'>
+            <div className='fixed inset-0 bg-gray-300 opacity-75 ' onClick={onclose}></div>
+            <div className='@container w-[90%] sm:w-[50%] my-10 pb-5 border-2 rounded border-sky-300 bg-white pop-up'>
                 <h2 className='text-2xl bg-blue-600 m-1 p-3 rounded font-medium text-white relative'>{title}</h2>
                 <button className='absolute top-5 right-5 bg-slate-400 px-1 rounded border border-gray-500' onClick={onClose}>←back</button>
                 <p className='px-5 p-2 bg-gray-200'>{description}</p>
                 <ul>
-                    {
+                    {   
                         candidate.map((item, index) => {
-                            return (<li className='flex border-b-1 vote-li m-2 p-3' key={index}><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{item.candidateName}</span> <span className='p-2'>({item.party})</span> <button className='bg-green-600 py-2 px-4 font-bold rounded ms-auto w-[90px]' onClick={() => conformVote(item.candidateName, item._id)}>Vote</button> </li>)
+                            return (<li className='flex flex-col sm:flex-row text-center border-b-1 vote-li m-2 p-3' key={index}><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{item.candidateName}</span> <span className='p-2'>({item.party})</span> <button className='bg-green-600 py-2 px-4 font-bold rounded w-[20%] vote-btn-adjust text-center' onClick={() => conformVote(item.candidateName, item._id)}>Vote</button> </li>)
                         })
                     }
                 </ul>

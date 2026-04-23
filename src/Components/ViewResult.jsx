@@ -20,16 +20,8 @@ export const ViewResult = () => {
 
 
   return (
-    <div className='@container w-5xl mx-auto my-10 border-2 rounded border-sky-300 bg-white'>
+    <div className='@container w-[90%] md:w-[70%] mx-auto my-10 border-2 rounded border-sky-300 bg-white'>
       <h2 className='text-2xl bg-blue-600 m-1 p-3 rounded font-medium text-white '>Election Results</h2>
-      {/* <div>
-        <h3 className='text-2xl bg-blue-500 mx-3 my-1 px-5 py-2 rounded font-medium text-white '>title</h3>
-        <p className='text-sm bg-sky-300 px-5 py-2 ms-6 me-3 rounded font-medium '>description</p>
-        <ul className='mx-2'>
-          <li className='flex border-b-1 vote-li m-2 p-3'><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>candidate-1</span><span className='p-2'>(Candidate Party)</span> <span className='bg-green-600 p-2 font-bold rounded ms-auto'>vote count</span></li>
-          <li className='flex border-b-1 vote-li m-2 p-3'><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>candidate-2</span><span className='p-2'>(Candidate Party)</span> <span className='bg-green-600 p-2 font-bold rounded ms-auto'>vote count</span></li>
-        </ul>
-      </div> */}
         {
           result.map((elec) => {
             return (<div key={elec._id} className='mb-10'>
@@ -39,7 +31,7 @@ export const ViewResult = () => {
                 {
                   elec.candidates.map((item, index)=>{
                     return(
-                    <li key={index} className='flex border-b-1 vote-li m-2 p-3'><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{item.name}</span><span className='p-2'>({item.party})</span> <span className='bg-green-600 p-2 font-bold rounded ms-auto w-20 text-center'>{item.voteCount}</span></li>
+                    <li key={index} className='flex flex-col sm:flex-row text-center border-b-1 vote-li m-2 p-3'><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{item.name}</span><span className='p-2'>({item.party})</span> <span className='bg-green-600 py-2 px-4 font-bold rounded ms-auto w-[20%] btn-adjust text-center'>{item.voteCount}</span></li>
                   )
                   })
                 }
@@ -49,7 +41,7 @@ export const ViewResult = () => {
                 {
                   elec.winner.map((item, index)=>{
                     return(
-                    <li key={index} className='flex border-b-1 vote-li mx-auto w-[70%] my-2 p-3 '><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{item.name}</span><span className='bg-green-600 p-2 font-bold rounded ms-auto w-20 text-center'>{item.voteCount}</span></li>
+                    <li key={index} className='flex flex-col sm:flex-row text-center border-b-1 vote-li mx-auto w-[70%] my-2 p-3 '><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{item.name}</span><span className='bg-green-600 py-2 px-4 font-bold rounded ms-auto w-[20%] btn-adjust text-center'>{item.voteCount}</span></li>
                   )
                   })
                 }

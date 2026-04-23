@@ -32,12 +32,12 @@ export const ElectionList = () => {
 
   return (
     <>
-      <div className='@container w-6xl mx-auto my-10 border-2 rounded border-sky-300 bg-white pop-bg'>
+      <div className='@container w-[90%] sm:w-[70%] mx-auto my-10 border-2 rounded border-sky-300 bg-white pop-bg'>
         <h2 className='text-2xl bg-blue-600 m-1 p-3 rounded font-medium text-white '>Active Elections</h2>
         <ul>
           {elections.map((items, index)=>{
-            return (<li className='flex border-b-1 vote-li m-2 p-3' key={index}><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{items.electionTitle}</span><span className='p-2'>(Not Voted)</span> <Link className='bg-green-600 p-2 font-bold rounded ms-auto' onClick={()=> {AddVote(items)}}>Add Vote</Link></li>)
-          })}
+            return (<li className='flex flex-col sm:flex-row text-center border-b-1 vote-li m-2 p-3' key={index}><span className='text-blue-600 font-bold text-xl p-1 text-shadow-lg/20 '>{items.electionTitle}</span><span className='p-2'>(Not Voted)</span> <Link className='bg-green-600 py-2 px-4 font-bold rounded w-[20%] vote-btn-adjust text-center' onClick={()=> {AddVote(items)}}>Add Vote</Link></li>)
+          })} 
         </ul>
       </div>
       {flag && (<VotingElection title={electionItem.electionTitle} id={electionItem._id} description={electionItem.description} onClose={()=> setFlag(false)} />)}
